@@ -1,0 +1,14 @@
+<div class="slideshow">
+  <div class="currentImage">
+    <app-icon-button (click)="selectBackImage()">chevron_left</app-icon-button>
+    <div class="image-container">
+      <img src="assets/images/{{currentImage}}" alt="">
+    </div>
+    <app-icon-button (click)="selectNextImage()">chevron_right</app-icon-button>
+  </div>
+  <ul id="thumbnails">
+    <li class="thumbnail" *ngFor="let image of images" [ngClass]="{'currentImage': image == currentImage}">
+      <img src="assets/images/{{image}}" (click)="selectImage(image)" alt="thumbnail">
+    </li>
+  </ul>
+</div>

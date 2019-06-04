@@ -1,0 +1,59 @@
+.slideshow {
+  display: inline-block;
+  position: relative;
+  border: 1px solid black;
+  padding: 10px;
+
+  .currentImage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image-container {
+      img {
+        height: 300px;
+        max-width: 500px;
+      }
+    }
+
+    app-icon-button {
+      position: absolute;
+
+      &:first-child {
+        left: 0;
+      }
+
+      &:last-child {
+        right: 0;
+      }
+
+      ::ng-deep{
+        i{
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  #thumbnails {
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    cursor: pointer;
+
+    .thumbnail{
+      img{
+        height: 80px;
+        width: 150px;
+      }
+
+      &.currentImage{
+        transition: ease 0.1s;
+        -webkit-box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
+        box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
+      }
+    }
+  }
+}
