@@ -1,14 +1,34 @@
-<div class="slideshow">
-  <div class="currentImage">
-    <app-icon-button (click)="selectBackImage()">chevron_left</app-icon-button>
-    <div class="image-container">
-      <img src="assets/images/{{currentImage}}" alt="">
-    </div>
-    <app-icon-button (click)="selectNextImage()">chevron_right</app-icon-button>
+<div class="currentImage">
+  <app-icon-button (click)="selectPreviousImage()">chevron_left</app-icon-button>
+  <div class="image-container">
+    <img src="assets/images/{{currentImage}}">
+    <app-icon color="white" (click)="fullscreen = true">fullscreen</app-icon>
   </div>
-  <ul id="thumbnails">
-    <li class="thumbnail" *ngFor="let image of images" [ngClass]="{'currentImage': image == currentImage}">
-      <img src="assets/images/{{image}}" (click)="selectImage(image)" alt="thumbnail">
-    </li>
-  </ul>
+  <app-icon-button (click)="selectNextImage()">chevron_right</app-icon-button>
+</div>
+<ul id="thumbnails">
+  <li class="thumbnail" *ngFor="let image of images" [ngClass]="{'currentImageThumbnail': image == currentImage}">
+    <img src="assets/images/{{image}}" (click)="selectImage(image)" alt="thumbnail">
+  </li>
+</ul>
+<div class="radio-buttons">
+  <app-icon-button *ngFor="let image of images" (click)="selectImage(image)">
+    {{image != currentImage ? 'radio_button_unchecked' : 'radio_button_checked'}}
+  </app-icon-button>
+</div>
+
+<div *ngIf="fullscreen" class="fullscreen">
+  <app-icon-button class="close" (click)="fullscreen = false">close</app-icon-button>
+  <app-icon-button class="left" (click)="selectPreviousImage()">chevron_left</app-icon-button>
+  <app-icon-button class="right" (click)="selectNextImage()">chevron_right</app-icon-button>
+  <div class="currentImage">
+    <div class="image-container">
+      <img src="assets/images/{{currentImage}}">
+    </div>
+  </div>
+  <div class="radio-buttons">
+    <app-icon-button *ngFor="let image of images" (click)="selectImage(image)">
+      {{image != currentImage ? 'radio_button_unchecked' : 'radio_button_checked'}}
+    </app-icon-button>
+  </div>
 </div>

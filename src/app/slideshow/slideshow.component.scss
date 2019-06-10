@@ -1,59 +1,141 @@
-.slideshow {
-  display: inline-block;
+.currentImage {
   position: relative;
-  border: 1px solid black;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
 
-  .currentImage {
+  .image-container {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .image-container {
-      img {
-        height: 300px;
-        max-width: 500px;
-      }
+    img {
+      height: 300px;
+      max-width: 500px;
     }
-
-    app-icon-button {
+    app-icon {
       position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: pointer;
+      transition: font-size 2s ease;
 
-      &:first-child {
-        left: 0;
-      }
-
-      &:last-child {
-        right: 0;
-      }
-
-      ::ng-deep{
-        i{
-          font-size: 3rem;
+      ::ng-deep {
+        i {
+          font-size: 2rem;
         }
       }
     }
   }
 
-  #thumbnails {
-    display: flex;
-    justify-content: center;
-    height: 80px;
-    cursor: pointer;
+  app-icon-button {
+    position: absolute;
 
-    .thumbnail{
-      img{
-        height: 80px;
-        width: 150px;
-      }
+    &:first-child {
+      left: 0;
+    }
 
-      &.currentImage{
-        transition: ease 0.1s;
-        -webkit-box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
-        -moz-box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
-        box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.5);
+    &:last-child {
+      right: 0;
+    }
+
+    ::ng-deep {
+      i {
+        font-size: 3rem;
       }
     }
   }
 }
+
+#thumbnails {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  cursor: pointer;
+
+  .thumbnail {
+    img {
+      height: 80px;
+      width: 150px;
+    }
+
+    &.currentImageThumbnail {
+      transition: box-shadow 0.2s ease;
+      -webkit-box-shadow: 1px 8px 24px 0 rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 1px 8px 24px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 1px 8px 24px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.radio-buttons {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 5px;
+
+  app-icon-button {
+    cursor: pointer;
+  }
+}
+
+.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: lightgrey;
+  height: 100vh;
+  width: 100vw;
+
+  app-icon-button {
+    position: absolute;
+    z-index: 100;
+    cursor: pointer;
+
+    ::ng-deep {
+      i {
+        font-size: 3rem;
+      }
+    }
+
+    &.close {
+      top: 20px;
+      right: 20px;
+    }
+
+    &.left {
+      left: 20px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &.right {
+      right: 20px;
+      top: 50%;
+    }
+  }
+
+  .currentImage {
+    align-items: flex-start;
+    height: 100%;
+    img {
+      height: 90vh;
+      max-width: 80vw;
+    }
+  }
+
+  .radio-buttons {
+    position: relative;
+    height: 20vh;
+    width: 100%;
+    z-index: 100;
+
+
+    app-icon-button {
+      top: 1vh;
+      position: relative
+    }
+  }
+}
+
+

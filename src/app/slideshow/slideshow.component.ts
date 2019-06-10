@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-slideshow',
@@ -10,7 +10,16 @@ export class SlideshowComponent implements OnInit {
   images: Array<string> = ['zurich.jpg', 'juicewrld.jpg', 'tokio-night.jpeg', 'new-york-night.jpeg'];
   currentImage = this.images[0];
   private currentIndex = 0;
+  fullscreen: boolean = false;
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'ArrowRight') {
+      this.selectNextImage();
+    } else if (event.key === 'ArrowLeft') {
+      this.selectPreviousImage();
+    }
+  }
 
   constructor() {
   }
@@ -27,7 +36,7 @@ export class SlideshowComponent implements OnInit {
     this.currentImage = this.images[this.currentIndex];
   }
 
-  selectBackImage(): void {
+  selectPreviousImage(): void {
     this.currentIndex--;
     if (this.currentIndex < 0) {
       this.currentIndex = this.images.length - 1;
@@ -39,5 +48,4 @@ export class SlideshowComponent implements OnInit {
     this.currentIndex = this.images.indexOf(image);
     this.currentImage = this.images[this.currentIndex];
   }
-
 }
